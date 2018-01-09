@@ -4,6 +4,27 @@ NUM = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"
 BLACK_CHESS = "●"
 WHITE_CHESS = "○"
 
+# constants defined here are for evaluations
+# variables begins with S means single
+SONE = 1
+STWO = 3
+STHREE = 6
+SFOUR = 7
+# variables only with numbers means open
+ONE = 2
+TWO = 4
+THREE = 7
+FOUR = 50
+FIVE = 100
+# variables begins with D means double
+DTWO = 5
+DTHREE = 15
+DFOUR = 75
+# variables begins with DEF means defence
+DEFTWO = 6
+DEFTHREE = 30
+DEFDTHREE = 40
+
 
 class Board:
     '''
@@ -230,5 +251,30 @@ class Board:
         '''
         self._player_name_1, self._player_name_2 = self._player_name_2, self._player_name_1
 
+    def available_point(self):
+        '''
+        Find all the available points within the bounded area, and stored in a dictionary
+        :return: {point: 0} where point is a str
+        '''
+        moves = {}
+
     def evaluate(self):
-        pass
+        '''
+        Evaluate all the available points and so the moves dict will become
+        {point: value} where point is a str and value is a int.
+        And then flip the dict, so keys will be int, and values will be list of str
+        :return: {value: [point]} where value is int, point is str
+        '''
+        moves = self.avaiable_point()
+        flip_moves = {}
+        return flip_moves
+
+    def next_move(self):
+        '''
+        The function will return the first point in the highest value's list.
+        :return: str
+        '''
+        moves = self.evaluate()
+        points = moves.keys()
+        points.sort()
+        return moves[points[-1]][0]
