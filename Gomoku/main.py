@@ -1,6 +1,19 @@
 from board import *
 
 
+def valid_move(move):
+    '''
+    Check if input move is valid.
+    :param move: a str represents move
+    :return: boolean
+    '''
+    if isinstance(move, str) and len(move) <= 3 and move[0] in ALPHA and move[1:len(move)] in NUM:
+        result = True
+    else:
+        result = False
+    return result
+
+
 def main():
     '''
     Main function is using to start the game.

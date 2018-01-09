@@ -230,15 +230,5 @@ class Board:
         '''
         self._player_name_1, self._player_name_2 = self._player_name_2, self._player_name_1
 
-
-def valid_move(move):
-    '''
-    Check if input move is valid.
-    :param move: a str represents move
-    :return: boolean
-    '''
-    if isinstance(move, str) and len(move) <= 3 and move[0] in ALPHA and move[1:len(move)] in NUM:
-        result = True
-    else:
-        result = False
-    return result
+    def evaluate(self):
+        pass
