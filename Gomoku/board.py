@@ -257,6 +257,49 @@ class Board:
         :return: {point: 0} where point is a str
         '''
         moves = {}
+        # initialize four bounds for available area
+        up = 0
+        down = 0
+        left = 0
+        right = 0
+        # loop through self._board to find the up and left bounds
+        i = 1
+        while i < 16:
+            # initialize left_not_found
+            left_not_found = True
+            j = 1
+            # loop through each element in nest lest
+            while left_not_found and j < 16:
+                # if curr has something then record it
+                if self._board[i][j] != "-":
+                    left_not_found = False
+                    # if left has not been found or this j is better then change j
+                    if left == 0 or left > j:
+                        left = j - 1 if j > 1 else 1
+            # the first time we found one chess is up bound
+            if up == 0 and not left_not_found:
+                up = i - 1 if i > 1 else 1
+
+        # use the same way to calculate down and right bound
+        # by initialize i = 15, j = 15, and then count down
+        i = 15
+        while i > 0:
+            right_not_found = True
+            j = 15
+            while right_not_found and j > 0:
+                if self._board[i][i] != "-":
+                    right_not_found = False
+                    if right == 0 or right < j:
+                        right = j + 1 if j < 15 else 15
+            if down == 0 and right_not_found:
+                down = i + 1 if i < 15 else 15
+
+        # for the bound area, find all the available points
+        for i in range(up, down + 1):
+            for j in range(left, right + 1):
+                if self._board[i][j] == "-":
+                    moves[chr(j + 96) + str(i)] = 0
+        return moves
 
     def evaluate(self):
         '''
@@ -266,7 +309,15 @@ class Board:
         :return: {value: [point]} where value is int, point is str
         '''
         moves = self.avaiable_point()
+        # TODO evaluate each available point
+
         flip_moves = {}
+        # loop each pairs in moves
+        for key in moves.keys():
+            if moves[key] in flip_moves:
+                flip_moves[moves[key]].append(key)
+            else:
+                flip_moves[moves[key]] = [key]
         return flip_moves
 
     def next_move(self):
@@ -277,4 +328,4 @@ class Board:
         moves = self.evaluate()
         points = moves.keys()
         points.sort()
-        return moves[points[-1]][0]
+        return moves[points[-1]][0] if self._board[8][8]!= "-" else "h8"
