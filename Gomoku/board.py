@@ -309,7 +309,15 @@ class Board:
         :return: {value: [point]} where value is int, point is str
         '''
         moves = self.avaiable_point()
-        # TODO evaluate each available point
+        # get all the points
+        points = moves.keys()
+        # loop through each point
+        # TODO evaluate each point in two sides:
+        # TODO if you can win
+        # TODO if you can stop the other win
+
+
+
 
         flip_moves = {}
         # loop each pairs in moves
@@ -320,7 +328,7 @@ class Board:
                 flip_moves[moves[key]] = [key]
         return flip_moves
 
-    def next_move(self):
+    def AI_next_move(self):
         '''
         The function will return the first point in the highest value's list.
         :return: str
