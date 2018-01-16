@@ -1,0 +1,54 @@
+Go east
+Go south
+Go east
+[menu]
+inventory
+Check Lucky Pen
+pick
+[menu]
+inventory
+No
+Go west
+Go south
+Check Eraser
+pick
+[menu]
+inventory
+No
+Go north
+Check White-Out
+pick
+[menu]
+inventory
+No
+Go north
+Go west
+[menu]
+inventory
+Yes
+Lucky Pen
+[menu]
+score
+[menu]
+inventory
+Yes
+Eraser
+[menu]
+score
+[menu]
+inventory
+Yes
+White-Out
+[menu]
+score
+Go east
+Check Tcard
+pick
+[menu]
+inventory
+No
+Go west
+[menu]
+inventory
+Yes
+Tcard

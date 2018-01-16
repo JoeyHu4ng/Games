@@ -1,0 +1,6 @@
+1 7 25 Lucky Pen
+2 7 25 Eraser
+3 7 25 White-Out
+4 3 0 Phone
+5 4 0 Apple
+6 7 25 Tcard

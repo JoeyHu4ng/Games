@@ -1,0 +1,5 @@
+The map of the game is sort of the real map of UTSC, which is a hint for player to play.
+During the game, there are more operations added such as pick, Check, Drop, and [hint].
+We add the limit for inventory, since we have four items, we put limit of 3 for inventory in order to increase the challenge for players.
+gameplay1.txt
+Shows another way to the gameover which is quit the game from [menu].

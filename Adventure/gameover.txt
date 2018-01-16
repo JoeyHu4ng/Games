@@ -1,0 +1,60 @@
+Go west
+Go east
+Go east
+Go north
+Go south
+Go south
+Go south
+Go north
+Go east
+Check Lucky Pen
+pick
+Go west
+Check White-Out
+pick
+Go north
+Go north
+Check Phone
+pick
+Go south
+Go west
+Go north
+Go east
+[menu]
+look
+Go west
+[menu]
+inventory
+Yes
+Phone
+[menu]
+inventory
+Yes
+Lucky Pen
+[menu]
+inventory
+Yes
+White-Out
+Check Phone
+pick
+Go west
+Go east
+Go east
+Check Tcard
+pick
+Go south
+Go south
+Check Eraser
+pick
+Go north
+Go north
+Go east
+Go west
+[menu]
+inventory
+Yes
+Eraser
+[menu]
+inventory
+Yes
+Tcard

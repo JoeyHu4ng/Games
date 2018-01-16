@@ -1,0 +1,55 @@
+LOCATION -1
+0
+That way is blocked.
+That way is blocked.
+END
+
+LOCATION 1
+25
+A librarian stands near the service desk, looking bored and sleepy. You walk inside the library, and look around. You see a pen on the shelf.
+You are on the first floor of the UTSC Library. It's usually crowded at this time of the day, but today it's quiet. Only a few students are studying inside one of the study rooms. You better not disturb them. A librarian stands near the service desk, looking bored and sleepy. You walk inside the library, and look around. You can walk away or check the second floor. 
+[check] second floor: There are several shelves on your left. You can try to search the top level of the innermost shelf.
+[check] innermost shelf: Your lucky pen is on the shelf.
+END
+
+LOCATION 2
+25
+You are on the first floor of social science building(MW). Along the side with wall, there is a stair for you to go up. You can count from the first level of the stair. On the 10th level, you see a small black thing.
+You are on the first floor of social science building(MW). When you walk inside the door, on your left, there are some students waiting for the next class. Also, some people are sitting on the couch talking about studying. Along the side with wall, there is a stair for you to go up. You can count from the first level of the stair. On the 10th level, you see a small black thing.
+[check] small black thing: This is your eraser! You need to use it with your lucky pen.
+END
+
+LOCATION 3
+25
+When you go inside the food place, you see a freezer with some sushi and drinking, on the bottom of the freezer, under the box of the sushi, you find your white-out.
+You are on the marketing place where connecting HW and SW, there is gallery next to the Starbucks. Walking along the gallery until the end, there is a small Tim Hortons where some people are waiting for their coffee. Outside the building, there is a little yard without people who are sitting because it is snowing outside. Turning left, there are many students are sitting next to the window studying. On the middle of the gallery, there is a place on your left where there is some food provided like Pizza, booster. When you go inside the place, you see a freezer with some sushi and drinking, on the bottom of the freezer, under the box of the sushi, you find your white-out.
+[check] white-out: This is also a necessity for you to complete an exam. You can use it in the location where you find a page.
+END
+
+LOCATION 4
+0
+You are in a building far away from the main campus, and walk into the office area. There are some red couches on the middle, you see your phone in one of them.
+This is a building far away from the main campus, but there are many students needing to go there to take class. This building has four floors total. The hall of the first floor is holding some conference, there are a few people who are wearing suits going to laprep for a coffee. There is an elevator on the first floor, you can choose to use the elevator or stairs to reach the 4th floor. When you arrive the 4th floor, if you are standing in the front of the elevator, you should turn left and turn left again, you will go inside the offices area of computer science, there are some professors working inside their office including your professor. There are some red couches on the middle, you see your phone in one of them.
+[check] phone: Your professor think you should not use this for all exams.
+END
+
+LOCATION 5
+0
+You are standing by the door of M1, North Residence. You get an apple.
+North Residence is the one where is located on the north of the campus. There are some townhouses here along the road. You should be quick because some students might be studying or sleeping. You try to find townhouse called M1. M1 is the only townhouse with a maple tree. So It is easy because you know what a maple tree looks like. You knock the door hard because the people inside are listening to music. When they open the door, they give you an apple. Uh.. you would better eat some fruit before the test to keep doctor away.
+[check] apple: You are not sure about what to do with this apple, maybe you can take it to courses or special exams.
+END
+
+LOCATION 6
+25
+There are Hero, Subway, KFC and an Asian food court. You go to Subway, the dustman who is sweeping the floor ask you with a T-card.
+This place is designed for students to eat food and also has doctor for them to check their body. There are Hero, Subway, KFC and an Asian food court. Some roundtables are in the middle of the first floor. There are many students talking and laughing with their friends. You can choose some of your favorite food to taste. You should go to KFC and ask them for some chicken wings. Before the test, you would better to feed yourself rather being hungry. You go to Subway, the dustman who is sweeping the floor ask you with a T-card.
+[check] T-card: Without this identification. You cannot even take the exam.
+END
+
+LOCATION 7
+0
+There are many students reviewing something and a page is on the desk.
+This is a white house near the south residence. You see many students are inside this house and reviewing some courses. Some people sitting at the back are looking at you, maybe they think you are too leisurely. You look around and think there is nothing to pick only a page on the desk near you seems familiar.
+[Check] page: This is not a page written by you.
+END
