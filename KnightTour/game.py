@@ -1,5 +1,6 @@
 import tkinter as tk
 import time as time
+import random as random
 
 def knight(arr, x, y, res, d = 1):
     if arr[x][y] != -1:
@@ -32,18 +33,22 @@ def run(e):
         prev = L
         res.pop(0)
         root.update()
-        time.sleep(0.5)
+        time.sleep(0.3)
 
 def main():
     global n, m, directions, res, root, arr, labels, knight
-    n = 7
-    m = 7
+    n = 5
+    m = 5
     directions = [
         (1, 2), (1, -2), (2, 1), (2, -1), (-1, 2), (-1, -2), (-2, 1), (-2, -1)
     ]
     arr = [[-1 for i in range(m)] for j in range(n)]
     res = []
-    knight(arr, 3, 3, res)
+    x = random.randint(0, 4)
+    y = random.randint(0, 4)
+    knight(arr, x, y, res)
+    if len(res) == 0:
+    	print(x, y, "has no solution!")
     print(res)
 
     root = tk.Tk()
