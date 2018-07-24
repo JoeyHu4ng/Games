@@ -20,10 +20,10 @@ class Minesweeper:
         var.set(OPTIONS[0])
 
         game = tk.OptionMenu(master, var, *OPTIONS)
-        game.grid(row=0, column=0)
+        game.grid(row=0, column=0, columnspan=3, sticky=tk.W)
 
         button = tk.Button(master, text="OK", command=self.__change_size)
-        button.grid(row=0, column=1)
+        button.grid(row=0, column=3, sticky=tk.W)
 
         self.__set_grid()
 
