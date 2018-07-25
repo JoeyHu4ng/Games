@@ -1,4 +1,4 @@
-from board import *
+from Gomoku.board import *
 
 
 def valid_move(move):

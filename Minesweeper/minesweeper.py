@@ -1,5 +1,4 @@
 import tkinter as tk
-import random as random
 
 
 class Minesweeper:
@@ -20,10 +19,10 @@ class Minesweeper:
         var.set(OPTIONS[0])
 
         game = tk.OptionMenu(master, var, *OPTIONS)
-        game.grid(row=0, column=0, columnspan=3, sticky=tk.W)
+        game.grid(row=0, column=0, columnspan=5, sticky=tk.W)
 
         button = tk.Button(master, text="OK", command=self.__change_size)
-        button.grid(row=0, column=3, sticky=tk.W)
+        button.grid(row=0, column=5, columnspan=2, sticky=tk.W)
 
         self.__set_grid()
 
@@ -41,7 +40,7 @@ class Minesweeper:
             block.grid_forget()
         for i in range(self.size):
             for j in range(self.size):
-                label = tk.Label(self.master, bg="gray", borderwidth=2, relief="groove", height=2, width=5)
+                label = tk.Label(self.master, bg="gray", borderwidth=2, relief="groove", height=1, width=2)
                 label.grid(row=i+1, column=j, sticky=tk.W+tk.E+tk.N+tk.S)
                 label.bind("<Button-1>", lambda e: e.widget.config(bg="darkgray"))
                 self.grid.append(label)

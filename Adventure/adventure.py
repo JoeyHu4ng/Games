@@ -1,5 +1,5 @@
-from game_data import World, Item, Location
-from player import Player
+from Adventure.game_data import World, Item, Location
+from Adventure.player import Player
 
 
 def do_menu_action(action, location, player, world):
@@ -24,7 +24,7 @@ def do_menu_action(action, location, player, world):
         # get the inventory list
         inventory = player.get_inventory()
         # if list contains something
-        if inventory != []:
+        if inventory:
             # get the items names based on object
             items_names = [inventory[i].get_name()
                            for i in range(len(inventory))]
@@ -73,7 +73,7 @@ def do_menu_action(action, location, player, world):
         player.victory = True
 
 
-if __name__ == "__main__":
+def main():
     WORLD = World("map.txt", "locations.txt", "items.txt")
     PLAYER = Player(1, 1)  # set starting location of player;
     # you may change the x, y coordinates here as appropriate
@@ -121,21 +121,21 @@ if __name__ == "__main__":
                 print(option)
             choice = input("\nChoose action: ")
 
-        # CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON USER'S CHOICE
-        # REMEMBER: the location = w.get_location(p.x, p.y) at the top of
-        #    this loop will update the location if the
-        #    choice the user made was just a movement, so only updating
-        #    player's position is enough to change
-        #    the location to the next appropriate location
-        # Possibilities: a helper function do_action(WORLD, PLAYER,
-        #   location, choice)
-        # OR A method in World class WORLD.do_action(PLAYER, location, choice)
-        # OR Check what type of action it is, then modify only player
-        # or location accordingly
-        # OR Method in Player class for move or updating inventory
-        # OR Method in Location class for updating location item info, or other
-        # location data
-        # etc....
+            # CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON USER'S CHOICE
+            # REMEMBER: the location = w.get_location(p.x, p.y) at the top of
+            #    this loop will update the location if the
+            #    choice the user made was just a movement, so only updating
+            #    player's position is enough to change
+            #    the location to the next appropriate location
+            # Possibilities: a helper function do_action(WORLD, PLAYER,
+            #   location, choice)
+            # OR A method in World class WORLD.do_action(PLAYER, location, choice)
+            # OR Check what type of action it is, then modify only player
+            # or location accordingly
+            # OR Method in Player class for move or updating inventory
+            # OR Method in Location class for updating location item info, or other
+            # location data
+            # etc....
             while choice not in menu:
                 # if action not in the menu
                 print("\nThat is not the verb I recognized.")
@@ -233,3 +233,7 @@ if __name__ == "__main__":
     # if player quit, then game over
     else:
         print("\nGame Over\n")
+
+
+if __name__ == "__main__":
+    main()
