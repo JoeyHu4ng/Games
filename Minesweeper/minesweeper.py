@@ -1,5 +1,7 @@
 import tkinter as tk
 import random as random
+import time as time
+import math as math
 
 
 class Minesweeper:
@@ -10,6 +12,7 @@ class Minesweeper:
         self.status = []
         self.finished = False
         self.win = False
+        self.start_time = None
         self.flag = tk.PhotoImage(file="flag.png").subsample(3)
         self.mine = tk.PhotoImage(file="mine.png").subsample(8)
         master.title("Minesweeper")
@@ -42,10 +45,12 @@ class Minesweeper:
         self.__set_grid()
         self.__set_mines()
         self.__start_game()
+        self.__set_timer()
 
     def __start_game(self):
         self.finished = False
         self.win = False
+        self.start_time = None
 
     def __set_grid(self):
         for block in self.grid:
@@ -54,7 +59,7 @@ class Minesweeper:
         for i in range(self.n):
             for j in range(self.m):
                 label = tk.Label(self.master, bg="gray", borderwidth=2, relief="groove", height=1, width=2)
-                label.grid(row=i + 1, column=j, sticky=tk.W + tk.E + tk.N + tk.S)
+                label.grid(row=i + 2, column=j, sticky=tk.W + tk.E + tk.N + tk.S)
                 label.bind("<Button-1>", self.__left_click)
                 label.bind("<Button-3>", self.__right_click)
                 self.grid.append(label)
@@ -64,8 +69,13 @@ class Minesweeper:
     def __left_click(self, e):
         if self.finished:
             return
+
+        if self.start_time is None:
+            self.start_time = time.time()
+            self.__update_clock()
+
         block = self.grid.index(e.widget)
-        if self.board[block] == 'f':
+        if self.status[block] == 'f':
             return
         elif self.board[block] > 8:
             self.finished = True
@@ -76,6 +86,8 @@ class Minesweeper:
             if self.finished:
                 for mine in self.mines:
                     self.grid[mine].config(image=self.flag, anchor=tk.CENTER)
+                self.num_mines_left = 0
+                self.__update_num_mines_left()
 
     def __open_area(self, block):
         if block < 0 or block >= self.n * self.m or self.status[block]:
@@ -104,13 +116,22 @@ class Minesweeper:
     def __right_click(self, e):
         if self.finished:
             return
+
+        if self.start_time is None:
+            self.start_time = time.time()
+            self.__update_clock()
+
         block = self.grid.index(e.widget)
         if self.status[block] == 'f':
             e.widget.config(image="")
             self.status[block] = False
+            self.num_mines_left += 1
+            self.__update_num_mines_left()
         elif not self.status[block]:
             e.widget.config(image=self.flag)
             self.status[block] = 'f'
+            self.num_mines_left -= 1
+            self.__update_num_mines_left()
 
     def __set_mines(self):
         OPTIONS = {
@@ -119,6 +140,12 @@ class Minesweeper:
             "Expert": 99
         }
         self.num_mines = OPTIONS[var.get()]
+
+        self.num_mines_left = self.num_mines
+        self.num_mines_left_label = tk.Label()
+        self.num_mines_left_label.grid(row=1, columnspan=self.m, sticky=tk.W)
+        self.__update_num_mines_left()
+
         self.mines = random.sample(range(self.n * self.m), self.num_mines)
         for mine in self.mines:
             self.__set_mine(mine)
@@ -139,6 +166,19 @@ class Minesweeper:
             self.board[mine - self.m] += 1
         if mine + self.m < self.n * self.m:
             self.board[mine + self.m] += 1
+
+    def __set_timer(self):
+        self.timer = tk.Label(text="0")
+        self.timer.grid(row=1, columnspan=self.m, sticky=tk.E)
+
+    def __update_clock(self):
+        if self.start_time is not None and not self.finished:
+            now = time.time() - self.start_time
+            self.timer.config(text=math.floor(now))
+            self.master.after(1000, self.__update_clock)
+
+    def __update_num_mines_left(self):
+        self.num_mines_left_label.config(text=max(self.num_mines_left, 0))
 
     def __print_board(self):
         print("#" * self.m + " board " + "#" * self.m)
