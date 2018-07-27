@@ -2,6 +2,8 @@ import tkinter as tk
 import random as random
 import time as time
 import math as math
+from Minesweeper.scoreboard import Scoreboard
+from tkinter import simpledialog
 
 
 class Minesweeper:
@@ -32,10 +34,11 @@ class Minesweeper:
         self.master = master
         self.master.title(title)
 
-        self.__set_size()
         self.grid = []
         self.board = []
         self.status = []
+        self.__set_size()
+        self.__load_scoreboard()
 
         self.flag = tk.PhotoImage(file="flag.png")
         self.mine = tk.PhotoImage(file="mine.png")
@@ -59,6 +62,7 @@ class Minesweeper:
         self.submenu.add_command(label="Beginner", command=lambda: self.__update_board("Beginner"))
         self.submenu.add_command(label="Intermediate", command=lambda: self.__update_board("Intermediate"))
         self.submenu.add_command(label="Expert", command=lambda: self.__update_board("Expert"))
+        self.submenu.add_command(label="Scoreboard", command=self.show_scoreboard)
 
     def __set_counter(self):
         """ Set up mines counter, smile face, and timer."""
@@ -125,8 +129,8 @@ class Minesweeper:
 
     def __update_timer(self):
         if self.start_time is not None and not self.finished:
-            now = time.time() - self.start_time
-            self.timer.config(text=math.floor(now))
+            self.time = time.time() - self.start_time
+            self.timer.config(text=math.floor(self.time))
             self.master.after(1000, self.__update_timer)
 
     def __left_click(self, e, block=None):
@@ -137,13 +141,14 @@ class Minesweeper:
             self.start_time = time.time()
             self.__update_timer()
 
-        block = block if block else self.grid.index(e.widget)
+        block = block if block is not None else self.grid.index(e.widget)
 
         if not self.mine_generated:
             self.__generate_mines(block)
 
         if self.status[block] == 'f':
             return
+        # put all kinds of mines and game over
         elif self.board[block] > 8:
             self.finished = True
             self.grid[block].config(image=self.dead_mine, anchor=tk.CENTER)
@@ -165,7 +170,7 @@ class Minesweeper:
                 self.__update_mines_left()
 
         if self.finished:
-            self.smile_face.config(image=self.cool if self.win else self.over)
+            self.__update_scoreboard()
 
     def __open_area(self, block):
         if block < 0 or block >= self.n * self.m or self.status[block]:
@@ -238,6 +243,55 @@ class Minesweeper:
         self.grid = []
         self.board = []
         self.status = []
+
+    def __update_scoreboard(self):
+        if self.win:
+            self.smile_face.config(image=self.cool)
+            if len(self.scoreboard[self.level]) < 10 or self.time < self.scoreboard[self.level][-1][0]:
+                name = simpledialog.askstring("Congratulations", "Please enter your name:")
+                self.scoreboard[self.level].append((math.floor(self.time), name))
+                self.scoreboard[self.level].sort()
+                if len(self.scoreboard[self.level]) >= 10:
+                    self.scoreboard[self.level].pop()
+                self.__write_scoreboard()
+        else:
+            self.smile_face.config(image=self.over)
+
+    def __load_scoreboard(self):
+        self.scoreboard = {key: [] for key in self.size_ops.keys()}
+        try:
+            scoreboard_file = open("scoreboard", "r")
+            lines = scoreboard_file.readlines()
+            for line in lines:
+                line = line.strip().split()
+                self.scoreboard[line[0]].append((int(line[2]), line[1]))
+            for level in self.scoreboard.keys():
+                self.scoreboard[level].sort()
+        except FileNotFoundError:
+            return
+
+    def __write_scoreboard(self):
+        scoreboard_file = open("scoreboard", "w+")
+        for level in self.scoreboard.keys():
+            count = 0
+            for grade, name in self.scoreboard[level]:
+                scoreboard_file.write(level + " ")
+                scoreboard_file.write(name + " " + str(grade) + "\n")
+                count += 1
+        scoreboard_file.close()
+
+    def __print_whole_board(self):
+        """ Print whole board status. """
+        print("#" * self.m + " " + self.level + " " + "#" * self.m)
+        for i in range(self.n * self.m):
+            if i % self.m != self.m - 1:
+                print("X" if self.board[i] > 8 else self.board[i], end="\t")
+            else:
+                print("X" if self.board[i] > 8 else self.board[i])
+
+    def show_scoreboard(self):
+        scoreboard_label = Scoreboard(self.scoreboard)
+        scoreboard_label.mater.mainloop()
 
 
 def main():
