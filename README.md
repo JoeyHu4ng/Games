@@ -12,10 +12,13 @@ Currently contains:
 <h2>Notice</h2>
 Projects are built in pycharm with pure python project, so that when running in command<br>
 line, have to change the import items, such as changed
+
 ```
 from Gomoku.board import *
 ```
+
 to
+
 ```
 from board import *
 ```
@@ -24,6 +27,7 @@ from board import *
 It is also known as five-in-row which is a game that contains two players,
 and who first have five chess in a same row wins the game.<br>
 This is designed to be runned in command line by
+
 ```
 $ python main.py
 OR
@@ -35,6 +39,7 @@ It is a text adventure game needing players to find required items in,
 the map to win.<br>
 The steps are limited in the game.<br>
 This is also designed to be runned in command line by
+
 ```
 $ python adventure.py
 OR
@@ -50,11 +55,13 @@ to draw the tour in grid.
 This game is for practicing tkinter skills, the images are from MS old minesweeper game<br>
 and the game is the same to the minesweeper game as well.<br>
 Running it by typing in command
+
 ```
 $ python minesweeper.py
 OR
 $ python3 minesweeper.py
 ```
+
 or just running it in pycharm.
 
 
