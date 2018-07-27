@@ -264,7 +264,7 @@ class Minesweeper:
             lines = scoreboard_file.readlines()
             for line in lines:
                 line = line.strip().split()
-                self.scoreboard[line[0]].append((int(line[2]), line[1]))
+                self.scoreboard[line[0]].append((int(line[-1]), " ".join(line[1:-1])))
             for level in self.scoreboard.keys():
                 self.scoreboard[level].sort()
         except FileNotFoundError:
