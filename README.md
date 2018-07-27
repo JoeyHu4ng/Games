@@ -51,7 +51,7 @@ Simple BFS algorithm brute-force solving the knight's tour problem, and also
 using tkinter<br>
 to draw the tour in grid.
 
-<h4>Minesweeper</h4>
+<h3>Minesweeper</h4>
 This game is for practicing tkinter skills, the images are from MS old minesweeper game<br>
 and the game is the same to the minesweeper game as well.<br>
 Running it by typing in command
