@@ -249,6 +249,7 @@ class Minesweeper:
             self.smile_face.config(image=self.cool)
             if len(self.scoreboard[self.level]) < 10 or self.time < self.scoreboard[self.level][-1][0]:
                 name = simpledialog.askstring("Congratulations", "Please enter your name:")
+                name = "Anonymous" if len(name) == 0 else name
                 self.scoreboard[self.level].append((math.floor(self.time), name))
                 self.scoreboard[self.level].sort()
                 if len(self.scoreboard[self.level]) >= 10:
