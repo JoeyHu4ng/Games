@@ -13,9 +13,11 @@ class Scoreboard:
         self.menu = tk.Menu(self.mater)
         self.mater.config(menu=self.menu)
 
-        self.menu.add_command(label="Beginner", command=lambda: self.__show_data("Beginner"))
-        self.menu.add_command(label="Intermediate", command=lambda: self.__show_data("Intermediate"))
-        self.menu.add_command(label="Expert", command=lambda: self.__show_data("Expert"))
+        self.submenu = tk.Menu(self.menu)
+        self.menu.add_cascade(label="Level", menu=self.submenu)
+        self.submenu.add_command(label="Beginner", command=lambda: self.__show_data("Beginner"))
+        self.submenu.add_command(label="Intermediate", command=lambda: self.__show_data("Intermediate"))
+        self.submenu.add_command(label="Expert", command=lambda: self.__show_data("Expert"))
 
         self.__show_data()
 

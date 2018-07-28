@@ -4,6 +4,7 @@ import time as time
 import math as math
 from Minesweeper.scoreboard import Scoreboard
 from tkinter import simpledialog
+from PIL import Image, ImageTk
 
 
 class Minesweeper:
@@ -40,13 +41,13 @@ class Minesweeper:
         self.__set_size()
         self.__load_scoreboard()
 
-        self.flag = tk.PhotoImage(file="images/flag.png")
-        self.mine = tk.PhotoImage(file="images/mine.png")
-        self.dead_mine = tk.PhotoImage(file="images/dead_mine.png")
-        self.wrong_mine = tk.PhotoImage(file="images/wrong_mine.png")
-        self.smile = tk.PhotoImage(file="images/smile.png")
-        self.over = tk.PhotoImage(file="images/over.png")
-        self.cool = tk.PhotoImage(file="images/cool.png")
+        self.flag = ImageTk.PhotoImage(Image.open("images/flag.png"))
+        self.mine = ImageTk.PhotoImage(Image.open("images/mine.png"))
+        self.dead_mine = ImageTk.PhotoImage(Image.open("images/dead_mine.png"))
+        self.wrong_mine = ImageTk.PhotoImage(Image.open("images/wrong_mine.png"))
+        self.smile = ImageTk.PhotoImage(Image.open("images/smile.png"))
+        self.over = ImageTk.PhotoImage(Image.open("images/over.png"))
+        self.cool = ImageTk.PhotoImage(Image.open("images/cool.png"))
 
         self.__set_menu_bar()
         self.__set_counter()
@@ -72,7 +73,7 @@ class Minesweeper:
         self.__update_mines_left()
 
         # set up smile face
-        self.smile_face = tk.Button(image=self.smile)
+        self.smile_face = tk.Label(image=self.smile)
         self.smile_face.grid(row=0, columnspan=self.m, sticky=tk.N + tk.S)
         self.smile_face.bind("<Button-1>", lambda e: self.__update_board(self.level))
 
@@ -98,7 +99,7 @@ class Minesweeper:
                 label = tk.Label(self.master, bg="gray", borderwidth=2, relief="groove", height=1, width=2)
                 label.grid(row=i + 1, column=j, sticky=tk.W + tk.E + tk.N + tk.S)
                 label.bind("<Button-1>", self.__left_click)
-                label.bind("<Button-3>", self.__right_click)
+                label.bind("<Button-2>", self.__right_click)
                 label.bind("<Double-Button-1>", self.__double_click)
                 self.grid.append(label)
                 self.board.append(0)
