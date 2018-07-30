@@ -4,11 +4,13 @@ import tkinter as tk
 class Scoreboard:
 
     def __init__(self, scoreboard=None):
-        if scoreboard is None:
-            scoreboard = {key: [] for key in ["Beginner", "Intermediate", "Expert"]}
+        self.scoreboard = {key: [] for key in ["Beginner", "Intermediate", "Expert"]}
+        if scoreboard is not None:
+            for key in scoreboard.keys():
+                if key in self.scoreboard:
+                    self.scoreboard[key] += scoreboard[key]
         self.mater = tk.Tk()
         self.mater.title("Scoreboard")
-        self.scoreboard = scoreboard
 
         self.menu = tk.Menu(self.mater)
         self.mater.config(menu=self.menu)
@@ -39,5 +41,10 @@ class Scoreboard:
 
 
 if __name__ == "__main__":
-    scoreboard = Scoreboard()
+    scoreboard = Scoreboard({
+        "Beginner": [(1, "joey"), (2, "Joey")],
+        "Expert": [(11, "Joey")],
+        "Intermediate": [(5, "Joey")],
+        "Customized": [(0, "Joey")]
+    })
     scoreboard.mater.mainloop()
