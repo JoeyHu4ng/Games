@@ -42,9 +42,9 @@ class Scoreboard:
 
 if __name__ == "__main__":
     scoreboard = Scoreboard({
-        "Beginner": [(1, "joey"), (2, "Joey")],
-        "Expert": [(11, "Joey")],
-        "Intermediate": [(5, "Joey")],
-        "Customized": [(0, "Joey")]
+        "Beginner": [(1, "Alice"), (2, "Bob")],
+        "Expert": [(11, "Alice")],
+        "Intermediate": [(5, "Alice")],
+        "Customized": [(0, "Bob")]
     })
     scoreboard.mater.mainloop()
