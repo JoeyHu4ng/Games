@@ -38,6 +38,7 @@ class Minesweeper:
         self.grid = []
         self.board = []
         self.status = []
+        self.flags = []
         self.__set_size()
         self.__load_scoreboard()
 
@@ -99,7 +100,7 @@ class Minesweeper:
                 label = tk.Label(self.master, bg="gray", borderwidth=2, relief="groove", height=1, width=2)
                 label.grid(row=i + 1, column=j, sticky=tk.W + tk.E + tk.N + tk.S)
                 label.bind("<Button-1>", self.__left_click)
-                label.bind("<Button-2>", self.__right_click)
+                label.bind("<Button-3>", self.__right_click)
                 label.bind("<Double-Button-1>", self.__double_click)
                 self.grid.append(label)
                 self.board.append(0)
