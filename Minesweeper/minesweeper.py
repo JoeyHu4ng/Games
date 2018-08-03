@@ -41,6 +41,7 @@ class Minesweeper:
         self.flags = []
         self.__set_size()
         self.__load_scoreboard()
+        self.master.resizable(False, False)
 
         self.flag = ImageTk.PhotoImage(Image.open("images/flag.png"))
         self.mine = ImageTk.PhotoImage(Image.open("images/mine.png"))
